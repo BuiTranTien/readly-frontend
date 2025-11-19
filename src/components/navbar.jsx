@@ -1,5 +1,5 @@
 import React from 'react'
-import { href, Link } from 'react-router-dom'
+import {  Link } from 'react-router-dom'
 import { HiBars3 } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa6";
@@ -20,10 +20,10 @@ const Navbar = () => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   console.log(isDropDownOpen)
   return (
-    <header className="max-w-screen-2xl mx-auto px-4 py-6">
+    <header className="max-w-screen-2xl mx-auto px-4 py-6 mt-1 ">
       <nav className="flex justify-between items-center">
         {/* left side */}
-        <div className='flex items-center md:gap-16 gap-4'>
+        <div className='flex items-center md:gap-10 gap-4 ml-20'>
           <Link to="/">
             <HiBars3 className="size-6" />
           </Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
         </div>
 
         {/* right side */}
-        <div className='relative flex items-center md:space-x-3 space-x-2'>
+        <div className='relative flex items-center md:space-x-6 space-x-2 mr-10'>
           <div>
             {
               currentUser ? <div>
