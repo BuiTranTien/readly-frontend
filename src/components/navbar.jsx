@@ -1,11 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { href, Link } from 'react-router-dom'
 import { HiBars3 } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
+import avatarImg from '../assets/avatar.png'
+import { useState } from 'react';
+
+const navigation = [
+  {name:"Dashboard" , href:"/dashboard"},
+  {name:"Orders" , href:"/orders"},
+  {name:"Cart page" , href:"/cart"},
+  {name:"Check out" , href:"/checkout"},
+]
+
 const Navbar = () => {
+  const currentUser = true
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  console.log(isDropDownOpen)
   return (
     <header className="max-w-screen-2xl mx-auto px-4 py-6">
       <nav className="flex justify-between items-center">
@@ -24,7 +37,34 @@ const Navbar = () => {
 
         {/* right side */}
         <div className='relative flex items-center md:space-x-3 space-x-2'>
-          <FaRegUser className='size-6' />
+          <div>
+            {
+              currentUser ? <div>
+                 <button onClick={()=> setIsDropDownOpen(!isDropDownOpen)}>
+                    <img src={avatarImg} alt=""  className={`size-7 rounded-full ${currentUser ? 'ring-2 ring-blue-500' : ''}`}></img>
+                </button> 
+                {/* show dropdown */}
+                {
+                  isDropDownOpen && (
+                    <div className='absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-40'>
+                      <ul className='py-2'>
+                        {
+                          navigation.map((item)=>(
+                            <li key={item.name} onClick={()=> setIsDropDownOpen(!isDropDownOpen)}>
+                              <Link to={item.href} className='block px-4 py-2 text-sm hover:bg-gray-100'>
+                                {item.name}
+                              </Link>
+                            </li>
+                          ))
+                        }
+                      </ul>
+                    </div>
+                  )
+                }
+                 </div> : <Link to="/login"><FaRegUser className='size-6' />  </Link>
+            }
+          </div>
+          
           <button className='hidden sm:block'>
             <FaRegHeart className='size-6' />
           </button>
