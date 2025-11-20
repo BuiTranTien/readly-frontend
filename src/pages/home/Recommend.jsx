@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import BookCard from '../book/BookCard';
-// Import Swiper React components
+import  { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // import required modules
@@ -11,38 +11,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-
-
-const categories = ["Choose a genre", "Business", "Fiction", "Horror", "Adventure"];
-const TopSeller = () => {
+const Recommend = () => {
   const [books, setBooks] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("Choose a genre");
 
   useEffect(() => {
     fetch("books.json").then(res => res.json()).then((data) => setBooks(data))
   }, [])
 
-  const filteredBooks = selectedCategory === "Choose a genre" ? books: books.filter(book=>book.category=== selectedCategory.toLowerCase())
-
-  console.log(filteredBooks)
-
   return (
-    <div className='py-10'>
-      <h2 className='text-3xl font-semibold mb-6'>Top sellers</h2>
-      {/* category filter */}
-      <div className='mb-8 flex items-center'>
-        <select
-          onChange={(e) =>setSelectedCategory(e.target.value)}
-        name="category" id="category" className='border bg-[#EAEAEA] border-gray-300 rounded-md px-3 py-2 focus:outline-none'>
-          {
-            categories.map((categories, index) => {
-              return (
-                <option key={index} value={categories}>{categories}</option>
-              )
-            })
-          }
-        </select>
-      </div>
+    <div className='py-16'>
+      <h2 className='text-3xl font-semibold mb-6'>Recommended for you</h2>
 
       <Swiper
         slidesPerView={2}
@@ -71,7 +49,7 @@ const TopSeller = () => {
       >
         
         {
-        filteredBooks.length>0 && filteredBooks.map((book,index)=>{
+        books.length>0 && books.slice(8,16).map((book,index)=>{
           return (
             <SwiperSlide key={index}>
               <BookCard  book={book}/>
@@ -81,10 +59,8 @@ const TopSeller = () => {
         })
       }
       </Swiper>
-
-      
     </div>
   )
 }
 
-export default TopSeller
+export default Recommend
