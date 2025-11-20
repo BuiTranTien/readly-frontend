@@ -10,7 +10,7 @@ function App() {
       <main className="min-h-screen max-w-screen-4xl mx-auto px-40 py-6 font-primary">
         <Outlet></Outlet>
       </main>
-      <footer>Footer</footer>
+      
 
     </>
   )
