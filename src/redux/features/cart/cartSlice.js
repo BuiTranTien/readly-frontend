@@ -15,11 +15,11 @@ const cartSlice = createSlice({
         alert("Item added successfully")
       }
       else (
-        alert("Item existed")
+        alert("Item existed") 
       )
     },
     removeFromCart: (state, action) => {
-      state.cartItems = state.cartItems.filter(item => item._id !== action.payload)
+      state.cartItems = state.cartItems.filter(item => item._id !== action.payload._id)
     },
     clearCart: (state) => {
       state.cartItems = []
