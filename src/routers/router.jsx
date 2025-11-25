@@ -4,6 +4,7 @@ import Home from "../pages/home/home"
 import Register from "../components/Register"
 import Login from "../components/Login"
 import CartPage from "../pages/book/CartPage"
+import CheckoutPage from "../pages/book/CheckoutPage"
 
 const router = createBrowserRouter([
   {
