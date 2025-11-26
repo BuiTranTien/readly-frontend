@@ -8,6 +8,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import avatarImg from '../assets/avatar.png'
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useAuth } from '../context/AuthContext';
 
 const navigation = [
   {name:"Dashboard" , href:"/dashboard"},
@@ -17,7 +18,14 @@ const navigation = [
 ]
 
 const Navbar = () => {
-  const currentUser = false
+  const {currentUser,logout} = useAuth()
+  
+
+  const handleLogOut = () =>{
+    logout()
+  }
+
+
   const cartItems = useSelector(state => state.cart.cartItems)
   console.log(cartItems)
 
@@ -61,6 +69,11 @@ const Navbar = () => {
                             </li>
                           ))
                         }
+                        <li>
+                          <button
+                            onClick={handleLogOut}
+                          className='block px-4 py-2 text-sm hover:bg-gray-100 '>Logout</button>
+                        </li>
                       </ul>
                     </div>
                   )
