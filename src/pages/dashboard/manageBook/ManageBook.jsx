@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDeleteBookMutation, useFetchAllBooksQuery } from '../../../redux/features/books/booksApi';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const ManageBooks = () => {
     const navigate = useNavigate();
@@ -19,6 +19,7 @@ const ManageBooks = () => {
         } catch (error) {
             console.error('Failed to delete book:', error.message);
             alert('Failed to delete book. Please try again.');
+            navigate(`/admin`)
         }
     };
 
